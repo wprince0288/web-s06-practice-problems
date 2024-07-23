@@ -8,28 +8,50 @@ body {
   border: 1rem solid #ff4b00;
 }
 
-h1, h2 {
-  color: #93005a;
+
+main {
+  padding: 1rem;
 }
 
-h1 {
-  font-size: 2rem;
-}
-
-#root, body {
+#root, #wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+h1, h2 {
+  color: #93005a;
+}
+
 #root {
   width: 100%;
   overflow-y: auto;
+  border-top: 1px solid grey;
   border-bottom: 1px solid grey;
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
 
 footer {
-  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+button {
+  background-color: grey;
+  margin-right: 0.5rem;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em;
+}
+
+section {
+  margin-top: 1rem;
+}
+
+h2 {
+  margin-bottom: 0.5rem;
 }
