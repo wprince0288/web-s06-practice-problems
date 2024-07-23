@@ -16,23 +16,6 @@
   <div id="root"></div>
   <script type="text/babel">
     const { useState } = React
-    /*
-    PROBLEM 1 - Initialize a `liked` component state: 
-    The aim is to track whether the section#comment is liked or not. Fix the first line inside App()
-    to properly initialize a `liked` state to false. In the same line, initialize also a `setLiked`
-    state updater. You already have `useState` imported at the top of the script.
-    
-    PROBLEM 2 - Implement the `like` click handler correctly:
-    Fix the `like` callback so it sets the `liked` state to its opposite value. 
-    Once this is done, test that clicking the "Like This" button makes it disappear,
-    and a ❤️ emoji appear in its stead!
-    
-    PROBLEM 3 - Implement a counter that increments until 10:
-    Edit the App component so that it contains a `count` state that can be displayed inside section#counter.
-    Also implement the `increment` function so that the count is incremented on click of the button.
-    But there is a twist: the count cannot go over 10! Also fix the JSX so that the correct count is
-    displayed in the p tag.
-    */
     function App() {
       const [liked, setLiked] = useState(false)
       const like = () => { setLiked(!liked) }
@@ -55,7 +38,6 @@
         </>
       )
     }
-
     ReactDOM.createRoot(document.getElementById('root')).render(<App />)
   </script>
 </body>
