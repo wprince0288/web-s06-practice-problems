@@ -8,12 +8,8 @@ body {
   border: 1rem solid #ff4b00;
 }
 
-h1, h2 {
-  color: #93005a;
-}
-
-h1 {
-  font-size: 2rem;
+main {
+  padding: 1rem;
 }
 
 #root, body {
@@ -22,12 +18,24 @@ h1 {
   align-items: center;
 }
 
+h1, h2 {
+  color: #93005a;
+  margin-bottom: 1rem;
+}
+
 #root {
   width: 100%;
   overflow-y: auto;
+  border-top: 1px solid grey;
   border-bottom: 1px solid grey;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding: 1rem;
+}
+
+.post {
+  border: 1px solid grey;
+  border-radius: 16px;
+  margin-bottom: 1rem;
+  padding: 1.5rem;
 }
 
 footer {
