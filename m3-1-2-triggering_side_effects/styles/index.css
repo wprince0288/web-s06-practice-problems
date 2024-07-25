@@ -8,26 +8,37 @@ body {
   border: 1rem solid #ff4b00;
 }
 
-h1, h2 {
-  color: #93005a;
-}
-
-h1 {
-  font-size: 2rem;
-}
-
-#root, body {
+#root, body, main {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+h1, h2 {
+  color: #93005a;
+}
+
 #root {
   width: 100%;
   overflow-y: auto;
+  border-top: 1px solid grey;
   border-bottom: 1px solid grey;
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+
+button {
+  background-color: #e6e6e6;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em;
+}
+
+.emoji {
+  font-size: 12em;
 }
 
 footer {
