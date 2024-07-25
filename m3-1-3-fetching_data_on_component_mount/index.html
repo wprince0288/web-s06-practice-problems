@@ -3,24 +3,74 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>React</title>
+  <title>Fetching Data on Component Mount</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./styles/reset.css" />
   <link rel="stylesheet" href="./styles/index.css" />
   <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
   <div id="root"></div>
   <script type="text/babel">
+    const { useState, useEffect } = React
+    const endpoint = 'https://testing-apis-postman.herokuapp.com/api/users'
+    /*
+    PROBLEM 1 - Create a state and an effect:
+    You need a slice of component state in <App /> to store the data. Fix the first line of <App />
+    to initialize a state called `heroes` along with its corresponding `setHeroes` state updater.
+    The initial value of this state should be an empty array. The <App /> component also needs
+    an effect that runs only after the first render. Create a log statement inside your effect
+    so it prints "Component mounted!" to the console.
 
+    PROBLEM 2 - Fetch the data:
+    All the time inside your effect, declare a function called `fetchHeroes` and invoke it right
+    underneath so we don't forget. Write a log statement inside `fetchHeroes` printing "About to fetch heroes!"
+    to the console, and make sure it prints. Then, still inside `fetchHeroes`, create a GET request with Axios,
+    calling the endpoint found at the top of this module. On error, print the error.message to the console.
+    On success, set the retrieved response.data into the `heroes` state.
+
+    PROBLEM 3 - Consume the data:
+    In the JSX of <App /> you need to pass the correct props to the <Hero /> component (the key is
+    already done for you). You should see hero cards displayed in the web view. See the design-file.png
+    image inside the src folder for an idea of what this should look like.
+
+    ❗ NOTE: Beware infinite loops! The fetching must only happen after the first render.
+    */
     function App() {
-      return <h1>Hello, World!</h1>
+      let heroes = [] // 👈 PROBLEM 1: initialize state correctly
+      // 👈 PROBLEM 1: create an effect that runs after first render only
+      // 👈 PROBLEM 2: fetch the data on first render and put it in state
+
+      return (
+        <main>
+          <h1>Fetching a list of heroes</h1>
+          {
+            heroes.map(h => <Hero key={h.id} />) // 👈 PROBLEM 3: pass the required props into <Hero />
+          }
+        </main>
+      )
+    }
+    function Hero({ id, name, bio }) { // ❗ Do not change this component
+      return (
+        <div className="hero">
+          <h2>Hero</h2>
+          <div><span>Id:</span> {id}</div>
+          <div><span>Name:</span> {name}</div>
+          <div><span>Bio:</span> {bio}</div>
+        </div>
+      )
     }
 
     ReactDOM.createRoot(document.getElementById('root')).render(<App />)
+  </script>
+  <script>
+    var footer = document.createElement('footer')
+    footer.textContent = `© BLOOM INSTITUTE OF TECHNOLOGY ${new Date().getFullYear()}`
+    document.querySelector('#root').insertAdjacentElement('afterEnd', footer)
   </script>
 </body>
 
