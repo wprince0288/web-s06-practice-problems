@@ -3,24 +3,71 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>React</title>
+  <title>Styling With Reactstrap</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" />
   <link rel="stylesheet" href="./styles/reset.css" />
   <link rel="stylesheet" href="./styles/index.css" />
   <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reactstrap/8.10.1/reactstrap.min.js"
+    crossorigin="anonymous"></script>
 </head>
 
 <body>
   <div id="root"></div>
   <script type="text/babel">
+    const { useState } = React;
+    const { Button, Card, CardBody, CardTitle, CardSubtitle, CardText } = Reactstrap
+    /*
+    💡 See the design-file.png image inside the src folder for the desired end result.
+    But feel free to experiment further! :)
 
+    PROBLEM 1 - Style the buttons:
+    Replace all <button> elements below with Reactstrap's <Button /> component (imported above).
+    Feel free to add any extra props, like color or size. Use the Reactstrap Button documentation
+    to learn more: https://reactstrap.github.io/?path=/docs/components-button--button
+
+    PROBLEM 2 - Style the sections:
+    Replace all div.card elements below with Reactstrap's <Card /> component, and replace
+    all <section> elements with the <CardBody /> component. Use the Reactstrap Card Component
+    documentation to learn more: https://reactstrap.github.io/?path=/docs/components-card--card
+
+    PROBLEM 3 - Style the headings:
+    Replace all <h3> elements with <CardTitle /> components, and all <h4> elements with <CardSubtitle />.
+    Finally, replace all <p> element with a <CardText /> component. Leave all class names alone:
+    do not delete them. They are used by Bootstrap!
+    */
     function App() {
-      return <h1>Hello, World!</h1>
+      const [liked, setLiked] = useState(false)
+      const [count, setCount] = useState(0)
+      return (
+        <>
+          <div className="card">
+            <section>
+              <h3 tag="h3">JavaScript rocks!</h3>
+              <h4 className="text-muted">It's the most used language in the world!</h4>
+              <p>JavaScript is simply everywhere.</p>
+              <div>{liked ? '❤️' : <button onClick={() => setLiked(true)}>Like This</button>}</div>
+            </section>
+          </div>
+          <div className="card">
+            <section>
+              <h3 tag="h3">Counters rock!</h3>
+              <h4 className="text-muted">The count is {count}</h4>
+              <button onClick={() => setCount(count + 1)}>Increment</button>
+            </section>
+          </div>
+        </>
+      )
     }
-
-    ReactDOM.createRoot(document.getElementById('root')).render(<App />)
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+  <script>
+    var footer = document.createElement('footer')
+    footer.textContent = `© BLOOM INSTITUTE OF TECHNOLOGY ${new Date().getFullYear()}`
+    document.querySelector('#root').insertAdjacentElement('afterEnd', footer)
   </script>
 </body>
 

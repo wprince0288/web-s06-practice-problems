@@ -8,7 +8,8 @@ body {
   border: 1rem solid #ff4b00;
 }
 
-h1, h2 {
+h1,
+h2 {
   color: #93005a;
 }
 
@@ -16,7 +17,8 @@ h1 {
   font-size: 2rem;
 }
 
-#root, body {
+#root,
+body {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,6 +30,15 @@ h1 {
   border-bottom: 1px solid grey;
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+
+.card {
+  margin: 1rem;
+  min-width: 330px;
+}
+
+button {
+  margin-top: 0.5rem;
 }
 
 footer {

@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Solution</title>
+  <title>Styling With Reactstrap Solution</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" />
   <link rel="stylesheet" href="./styles/reset.css" />
@@ -11,24 +11,38 @@
   <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/reactstrap/9.1.2/reactstrap.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reactstrap/8.10.1/reactstrap.min.js"
+    crossorigin="anonymous"></script>
 </head>
 
 <body>
   <div id="root"></div>
   <script type="text/babel">
     const { useState } = React;
-    const { Button } = Reactstrap;
-
+    const { Button, Card, CardBody, CardTitle, CardSubtitle, CardText } = Reactstrap;
     function App() {
+      const [liked, setLiked] = useState(false)
+      const [count, setCount] = useState(0)
       return (
-        <div>
-          <h1>Hello, World!</h1>
-          <Button color="primary">Reactstrap Button</Button>
-        </div>
-      );
+        <>
+          <Card className="card" id="comment">
+            <CardBody>
+              <CardTitle tag="h3">JavaScript rocks!</CardTitle>
+              <CardSubtitle className="text-muted">It's the most used language in the world!</CardSubtitle>
+              <CardText>JavaScript is simply everywhere.</CardText>
+              <div>{liked ? '❤️' : <Button onClick={() => setLiked(true)}>Like This</Button>}</div>
+            </CardBody>
+          </Card>
+          <Card className="card" id="counter">
+            <CardBody>
+              <CardTitle tag="h3">Counters rock!</CardTitle>
+              <CardSubtitle className="text-muted">The count is {count}</CardSubtitle>
+              <Button onClick={() => setCount(count + 1)}>Increment</Button>
+            </CardBody>
+          </Card>
+        </>
+      )
     }
-
     ReactDOM.createRoot(document.getElementById('root')).render(<App />);
   </script>
   <script>
