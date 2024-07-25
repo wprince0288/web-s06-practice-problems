@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>React</title>
+  <title>Working With Side Effects</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./styles/reset.css" />
   <link rel="stylesheet" href="./styles/index.css" />
@@ -15,12 +15,47 @@
 <body>
   <div id="root"></div>
   <script type="text/babel">
+    const { useState, useEffect } = React
+    /*
+    PROBLEM 1 - Create an effect on **first** render:
+    After the first render of the component App, print to the console "App mounted for the first time"
+    (useEffect is already imported for you). Refresh the web view and see your log statement only
+    printing after the first render. With the App mounted on the DOM, you should not see this message
+    again in the console.
 
+    PROBLEM 2 - Create an effect after **every** render:
+    After every render of the component App (including the first render), print to the console
+    "App rendered nicely".
+
+    PROBLEM 3 - Create another effect after **every** render:
+    After every render of the component App, if the lights are on, print to the console "Ligths are on!".
+    If the lights are off, don't print anything. Do this task inside a separate effect than the one
+    used in Problem 2.
+    */
     function App() {
-      return <h1>Hello, World!</h1>
+      const [on, setOn] = useState(false)
+      const turnOn = () => setOn(true)
+      const turnOff = () => setOn(false)
+      return (
+        <main>
+          <h1>The lights are {on ? 'ON' : 'OFF'}</h1>
+          <div className="emoji">{on ? '💡' : '🌌'}</div>
+          <div>
+            {
+              on
+                ? <button onClick={turnOff}>Turn off</button>
+                : <button onClick={turnOn}>Turn on</button>
+            }
+          </div>
+        </main>
+      )
     }
-
     ReactDOM.createRoot(document.getElementById('root')).render(<App />)
+  </script>
+  <script>
+    var footer = document.createElement('footer')
+    footer.textContent = `© BLOOM INSTITUTE OF TECHNOLOGY ${new Date().getFullYear()}`
+    document.querySelector('#root').insertAdjacentElement('afterEnd', footer)
   </script>
 </body>
 
