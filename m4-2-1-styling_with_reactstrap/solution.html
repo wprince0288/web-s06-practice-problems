@@ -5,22 +5,31 @@
   <meta charset="UTF-8">
   <title>Solution</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" />
   <link rel="stylesheet" href="./styles/reset.css" />
   <link rel="stylesheet" href="./styles/index.css" />
   <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reactstrap/9.1.2/reactstrap.min.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
   <div id="root"></div>
   <script type="text/babel">
-    const { useState } = React
+    const { useState } = React;
+    const { Button } = Reactstrap;
+
     function App() {
-      return <h1>Hello, World!</h1>
+      return (
+        <div>
+          <h1>Hello, World!</h1>
+          <Button color="primary">Reactstrap Button</Button>
+        </div>
+      );
     }
 
-    ReactDOM.createRoot(document.getElementById('root')).render(<App />)
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
   </script>
   <script>
     var footer = document.createElement('footer')
