@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>React</title>
+  <title>Cleaning up on Component Unmount</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./styles/reset.css" />
   <link rel="stylesheet" href="./styles/index.css" />
@@ -15,12 +15,85 @@
 <body>
   <div id="root"></div>
   <script type="text/babel">
+    const { useState, useEffect } = React
+    /*
+    💡 NOTE: The starter code is broken and full of memory leaks (unnecessary background activity that accumulates,
+    causing the browser to consume more and more memory as time goes by): as soon as we start working on problems 2 and 3
+    you will need to **refresh your web view manually** whenever you update your code. You can see how to do this
+    in the refresh.png image in the src folder. LET'S FIX THIS!
 
-    function App() {
-      return <h1>Hello, World!</h1>
+    PROBLEM 1 - Clean up the first effect inside <Bulb />:
+    Print "Bulb about to unmount" to the console and test the result by toggling the bulb on and off.
+
+    PROBLEM 2 - ❗ Uncomment the second effect inside <Bulb />:
+    This effect is out of control! A fresh listener is added to the DOM whenever we toggle the <Bulb />.
+    Experience this bug by toggling the <Bulb /> on and off multiple times and then clicking anywhere on the web view.
+    You should see "The window was clicked while the lights were on!" printed to the console multiple times.
+    To fix this, you must remove the listener each time <Bulb /> unmounts by invoking `window.removeEventListener`
+    and passing it event ("click") and the listener as its arguments.
+
+    PROBLEM 3 - ❗ Uncomment the third effect inside <Bulb />:
+    This effect is also out of control!! Whenever we toggle the <Bulb />, a fresh setInterval is added to the DOM,
+    even if one is already there. Experience this bug by toggling the <Bulb /> on and off multiple times and then
+    looking at the console. You should see "Another second has elapsed with the lights on..." printing rapidly.
+    And when the <Bulb /> is unmounted, this message shouldn't print at all, but it keeps printing.
+    To fix this, invoke `clearInterval` and pass the interval as its argument to ensure the setInterval
+    is removed each time <Bulb /> unmounts.
+    */
+    function Bulb() {
+      let [seconds, setSeconds] = useState(0)
+      useEffect(() => {
+        console.log('Bulb mounted!')
+        return () => {
+          // 👈 tackle PROBLEM 1 here
+        }
+      }, [])
+
+      // 👇 Uncomment the following effect to work on PROBLEM 2:
+      // useEffect(() => {
+      //   const listener = () => console.log('The window was clicked while the lights were on!')
+      //   window.addEventListener('click', listener)
+      //   return () => {
+      //     // 👈 tackle PROBLEM 2 here
+      //   }
+      // }, [])
+
+      // 👇 Uncomment the following effect to work on PROBLEM 3:
+      // useEffect(() => {
+      //   let interval = setInterval(() => {
+      //     console.log('Another second has elapsed with the lights on...')
+      //     setSeconds(sc => sc + 1)
+      //   }, 1000)
+      //   return () => {
+      //     // 👈 tackle PROBLEM 3 here
+      //   }
+      // }, [])
+      return (
+        <>
+          <div className="emoji">💡</div>
+          <div>Lights have been on for {seconds} seconds...</div>
+        </>
+      )
     }
-
+    function App() { // do not change this component
+      const [on, setOn] = useState(false)
+      return (
+        <main>
+          <h1>The lights are {on ? 'ON' : 'OFF'}</h1>
+          <div>
+            <button onClick={() => setOn(true)}>Turn on</button>
+            <button onClick={() => setOn(false)}>Turn off</button>
+          </div>
+          {on && <Bulb />}
+        </main>
+      )
+    }
     ReactDOM.createRoot(document.getElementById('root')).render(<App />)
+  </script>
+  <script>
+    var footer = document.createElement('footer')
+    footer.textContent = `© BLOOM INSTITUTE OF TECHNOLOGY ${new Date().getFullYear()}`
+    document.querySelector('#root').insertAdjacentElement('afterEnd', footer)
   </script>
 </body>
 
