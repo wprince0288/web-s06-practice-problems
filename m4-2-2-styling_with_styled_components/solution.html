@@ -3,29 +3,90 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Solution</title>
+  <title>Styling With Styled Components Solution</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./styles/reset.css" />
   <link rel="stylesheet" href="./styles/index.css" />
   <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+  <script src="https://unpkg.com/styled-components/dist/styled-components.min.js"></script>
 </head>
 
 <body>
   <div id="root"></div>
   <script type="text/babel">
     const { useState } = React
-    function App() {
-      return <h1>Hello, World!</h1>
+    const styled = window.styled
+    const data = [
+      {
+        id: 1,
+        name: "Rosa Parks",
+        bio: "Rosa Parks was an African American civil rights activist. Her refusal to give up her bus seat to a white passenger in Montgomery, Alabama, in 1955, sparked the Montgomery Bus Boycott and became an important symbol of the civil rights movement. Her brave act of defiance helped lead to the end of racial segregation in public facilities."
+      },
+      {
+        id: 2,
+        name: "Nelson Mandela",
+        bio: "Nelson Mandela was a South African anti-apartheid revolutionary and political leader. He fought against racial segregation and was imprisoned for 27 years. After his release, he became the first democratically elected President of South Africa and worked towards reconciliation and equality."
+      },
+      {
+        id: 3,
+        name: "Mahatma Gandhi",
+        bio: "Mahatma Gandhi was an Indian freedom fighter and leader of the Indian independence movement against British rule. He advocated for nonviolent civil disobedience and played a crucial role in India's struggle for independence."
+      },
+      {
+        id: 4,
+        name: "Joan of Arc",
+        bio: "Joan of Arc was a French military leader and heroine during the Hundred Years' War. She played a pivotal role in the French victory at the Siege of Orléans and was later captured and executed. She is regarded as a symbol of French nationalism and courage."
+      },
+      {
+        id: 5,
+        name: "Martin Luther King Jr.",
+        bio: "Martin Luther King Jr. was an American Baptist minister and civil rights activist. He fought against racial segregation and discrimination in the United States. He is best known for his role in the advancement of civil rights using nonviolent civil disobedience."
+      }
+    ]
+    const StyledHero = styled.div`
+      padding: 1.2rem;
+      margin: 0.5rem;
+      border-radius: 12px;
+      border: ${pr => pr.selected ? '4px solid orange' : '1px solid grey'};
+      span {
+        color: orange;
+        font-size: 1.2em;
+      }
+      h2 {
+        font-size: ${pr => pr.selected ? '2em' : '1.2em'};
+      }
+    `
+    function Hero({ hero, selected, selectHero }) {
+      return (
+        <StyledHero className="hero" onClick={selectHero} selected={selected}>
+          <h2>{hero.name}</h2>
+          <div><span>Id:</span> {hero.id}</div>
+          <div><span>Bio:</span> {hero.bio}</div>
+        </StyledHero>
+      )
     }
-
+    function App() { // do not change this component
+      const [heroes, setHeroes] = useState(data)
+      const [selectedHero, setSelectedHero] = useState(null)
+      return (
+        <main>
+          <h1>Styling with Styled Components</h1>
+          {
+            heroes.map(hero =>
+              <Hero
+                hero={hero}
+                key={hero.id}
+                selected={hero.id === selectedHero}
+                selectHero={() => setSelectedHero(hero.id)}
+              />
+            )
+          }
+        </main>
+      )
+    }
     ReactDOM.createRoot(document.getElementById('root')).render(<App />)
-  </script>
-  <script>
-    var footer = document.createElement('footer')
-    footer.textContent = `© BLOOM INSTITUTE OF TECHNOLOGY ${new Date().getFullYear()}`
-    document.querySelector('#root').insertAdjacentElement('afterEnd', footer)
   </script>
 </body>
 

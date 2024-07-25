@@ -8,24 +8,25 @@ body {
   border: 1rem solid #ff4b00;
 }
 
-h1, h2 {
-  color: #93005a;
-}
-
-h1 {
-  font-size: 2rem;
-}
-
-#root, body {
+#root,
+body,
+main {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+h1,
+h2 {
+  color: #93005a;
+}
+
 #root {
   width: 100%;
   overflow-y: auto;
+  border-top: 1px solid grey;
   border-bottom: 1px solid grey;
+  padding: 1rem;
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
@@ -33,3 +34,17 @@ h1 {
 footer {
   padding: 1rem;
 }
+
+/*
+.hero {
+  padding: 1.2rem;
+  margin: 0.5rem;
+  border-radius: 12px;
+  border: 1px solid grey;
+}
+
+.hero span {
+  color: orange;
+  font-size: 1.2em;
+}
+ */
