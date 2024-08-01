@@ -17,10 +17,10 @@
   <script type="text/babel">
     const { useState } = React
     /*
-    There are two sides to each of these problems: 
+    There are two sides to each of these problems:
       [A] passing some data from <App /> into a component using props
       [B] using the data coming in through props in the JSX of a component.
-          
+
     PROBLEM 0 - <Heading />
     ** ✅ THIS PROBLEM IS DONE FOR YOU AS AN EXAMPLE ✅ **
     - [A] Inside <App />, take the `mainSiteHeading` from the `data` state and pass it into <Heading /> via a prop called `text`.
@@ -96,6 +96,11 @@
       )
     }
     ReactDOM.createRoot(document.getElementById('root')).render(<App />)
+  </script>
+  <script>
+    const footer = document.createElement('footer')
+    footer.textContent = `© BLOOM INSTITUTE OF TECHNOLOGY ${new Date().getFullYear()}`
+    document.querySelector('#root').insertAdjacentElement('afterEnd', footer)
   </script>
 </body>
 
