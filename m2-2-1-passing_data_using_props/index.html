@@ -59,18 +59,18 @@
           <Heading text={data.mainSiteHeading} /> {/* ✅ Problem 0 [A] passing data via a `text` prop */}
           <section>
             <h2>What do you want to do?</h2>
-            <Button /> {/* 👈 PROBLEM 2 */}
-            <Button /> {/* 👈 PROBLEM 2 */}
-            <Button /> {/* 👈 PROBLEM 2 */}
+            <Button label={data.btnLabels.js} color={data.colors[0]} /> {/* 👈 PROBLEM 2 */}
+            <Button label={data.btnLabels.java} color={data.colors[1]} /> {/* 👈 PROBLEM 2 */}
+            <Button label={data.btnLabels.py} color={data.colors[2]} /> {/* 👈 PROBLEM 2 */}
           </section>
           <section>
             <h2>Salute these wonderful learners:</h2>
             <ul>
-              <li><Learner /></li> {/* 👈 PROBLEM 3 */}
-              <li><Learner /></li> {/* 👈 PROBLEM 3 */}
+              <li><Learner fname={data.learners[0].fname} lname={data.learners[0].lname} /></li> {/* 👈 PROBLEM 3 */}
+              <li><Learner fname={data.learners[1].fname} lname={data.learners[1].lname} /></li> {/* 👈 PROBLEM 3 */}
             </ul>
           </section>
-          <Footer /> {/* 👈 PROBLEM 1 */}
+          <Footer note={data.footerNote} /> {/* 👈 PROBLEM 1 */}
         </>
       )
     }
@@ -80,19 +80,19 @@
         <h1>{text}</h1> // ✅ Problem 0 [B] uses the string inside `text` to fill the <h1> with text
       )
     }
-    function Footer() { // 👈 PROBLEM 1 👇
+    function Footer({ note }) { // 👈 PROBLEM 1 👇
       return (
-        <footer>Hard-coded footer note {new Date().getFullYear()}</footer>
+        <footer>{note} {new Date().getFullYear()}</footer>
       )
     }
-    function Button() { // 👈 PROBLEM 2 👇
+    function Button({ color, label }) { // 👈 PROBLEM 2 👇
       return (
-        <button style={{ color: 'white' }}>Learn stuff</button>
+        <button style={{ color: 'white', backgroundColor: color }}>{label}</button>
       )
     }
-    function Learner() { // 👈 PROBLEM 3 👇
+    function Learner({ fname, lname }) { // 👈 PROBLEM 3 👇
       return (
-        <div><p>Doe, Jane</p></div>
+        <div><p>{lname}, {fname}</p></div>
       )
     }
     ReactDOM.createRoot(document.getElementById('root')).render(<App />)

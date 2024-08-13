@@ -56,7 +56,7 @@
         <main>
           <h1>Composing React Components</h1>
           {
-            posts?.map((ps, i) => <Post key={i} />) // 👈 PROBLEMS 1 and 3
+            posts?.map((ps, i) => <Post key={ps.id} title={ps.title} text={ps.text} comments={ps.comments} />) // 👈 PROBLEMS 1 and 3
           }
         </main>
       )
@@ -68,7 +68,7 @@
           <p>{text || 'hard-coded text'}</p>
           <h3>Comments</h3>
           <ul>
-            {comments?.map((com, i) => <li key={i}><Comment /></li>)} {/* 👈 PROBLEMS 2 and 3 */}
+            {comments?.map((com, i) => <li key={com.id}><Comment commentText={com.commentText} /></li>)} {/* 👈 PROBLEMS 2 and 3 */}
           </ul>
         </div>
       )

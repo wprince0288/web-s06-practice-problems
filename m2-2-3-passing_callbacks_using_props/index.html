@@ -37,22 +37,28 @@
     */
     function App() {
       // 👈 PROBLEM 1 - state and callbacks here
+      const [on, setOn] = useState(false)
+      const turnOn = () => setOn(true)
+      const turnOff = () => setOn(false)
       return (
         <main>
-          <Bulb /> {/* 👈 PROBLEM 2 - pass the props into child component */}
+          <Bulb on={on} turnOn={turnOn} turnOff={turnOff}/> {/* 👈 PROBLEM 2 - pass the props into child component */}
         </main>
       )
     }
-    function Bulb({ on }) { //  👈 PROBLEM 2 - receive the props from parent
+    function Bulb({ on, turnOn, turnOff }) { //  👈 PROBLEM 2 - receive the props from parent
       return (
         <>
           <div className="emoji">{on ? '💡' : '🌌'}</div>
           <div>
             {/* 👇 PROBLEM 2 - wire the callbacks */}
             {/* 👇 PROBLEM 3 - render the correct button using a ternary conditional */}
-            <button>Turn off</button>
-            <button>Turn on</button>
-          </div>
+            {
+              on
+            ? <button onClick={turnOff}>Turn off</button>
+            : <button onClick={turnOn}>Turn on</button>
+            }
+            </div>
         </>
       )
     }

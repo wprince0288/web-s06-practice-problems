@@ -34,10 +34,10 @@
     displayed in the p tag.
     */
     function App() {
-      let liked = false // 👈 PROBLEM 1
-      const like = () => { liked = !liked } // 👈 PROBLEM 2
-      let count = 0 // 👈 PROBLEM 3
-      const increment = () => { } // 👈 PROBLEM 3
+      const [liked, setLiked] = useState(false) // 👈 PROBLEM 1
+      const like = () => { setLiked(!liked) } // 👈 PROBLEM 2
+      const [count, setCount] = useState(0) // 👈 PROBLEM 3
+      const increment = () => { if (count < 10) setCount(count + 1) } // 👈 PROBLEM 3
       return (
         <>
           <section id="comment">
@@ -49,7 +49,7 @@
           </section>
           <section id="counter">
             <h3>Counters rock!</h3>
-            <p>The count is 0</p> {/* 👈 PROBLEM 3 */}
+            <p>The count is {count}</p> {/* 👈 PROBLEM 3 */}
             <button onClick={increment}>Increment</button>
           </section>
         </>

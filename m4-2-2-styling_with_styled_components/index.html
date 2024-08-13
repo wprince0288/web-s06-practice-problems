@@ -72,13 +72,13 @@
       /* 👈 PROBLEMS 2 and 3, your styles go here */
     `
     function Hero({ hero, selected, selectHero }) {
-      if (selected) console.log(`The selected hero is ${hero.name}`)
+      // if (selected) console.log(`The selected hero is ${hero.name}`)
       return (
-        <div className="hero" onClick={selectHero}> {/* 👈 PROBLEM 1, your styled component is used here */}
+        <StyledHero className="hero" onClick={selectHero} selected={selected}> {/* 👈 PROBLEM 1, your styled component is used here */}
           <h2>{hero.name}</h2>
           <div><span>Id:</span> {hero.id}</div>
           <div><span>Bio:</span> {hero.bio}</div>
-        </div>
+        </StyledHero>
       )
     }
     function App() { // do not change this component

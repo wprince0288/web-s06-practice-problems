@@ -29,8 +29,8 @@
         const listener = () => console.log('The window was clicked while the lights were on!')
         window.addEventListener('click', listener)
         return () => {
-          // 👈 code PROBLEM 2 here
           window.removeEventListener('click', listener)
+          // 👈 code PROBLEM 2 here
         }
       }, [])
       useEffect(() => {

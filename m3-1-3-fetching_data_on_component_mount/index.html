@@ -41,15 +41,28 @@
     ❗ NOTE: Beware infinite loops! The fetching must only happen after the first render.
     */
     function App() {
-      let heroes = [] // 👈 PROBLEM 1: initialize state correctly
+      const [heroes, setHeroes] = useState([]) // 👈 PROBLEM 1: initialize state correctly
       // 👈 PROBLEM 1: create an effect that runs after first render only
+      useEffect(() => {
+        console.log("Component mounted!")
+        function fetchHeroes() {
+          console.log("About to fetch heroes!")
+          axios.get(endpoint)
+            .then(res => {
+              console.log('the data arrived -->', res.data)
+              setHeroes(res.data)
+            })
+            .catch(err => console.log(err.message))
+        }
+        fetchHeroes()
+      }, [])
       // 👈 PROBLEM 2: fetch the data on first render and put it in state
 
       return (
         <main>
           <h1>Fetching a list of heroes</h1>
           {
-            heroes.map(h => <Hero key={h.id} />) // 👈 PROBLEM 3: pass the required props into <Hero />
+            heroes.map(h => <Hero key={h.id} id={h.id} name={h.name} bio={h.bio} />) // 👈 PROBLEM 3: pass the required props into <Hero />
           }
         </main>
       )

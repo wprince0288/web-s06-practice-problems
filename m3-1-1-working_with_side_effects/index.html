@@ -36,6 +36,17 @@
       const [on, setOn] = useState(false)
       const turnOn = () => setOn(true)
       const turnOff = () => setOn(false)
+
+      useEffect(() => {
+        console.log("App mounted for the first time")
+      }, [])
+      useEffect(() => {
+        console.log("App rendered nicely")
+      })
+      useEffect(() => {
+        if (on) console.log("Ligths are on!")
+      })
+
       return (
         <main>
           <h1>The lights are {on ? 'ON' : 'OFF'}</h1>

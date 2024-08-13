@@ -42,12 +42,15 @@
       go: "Golang",
     }
     function App() {
-      let selection = '' // 👈 PROBLEM 1
+      const [selection, setSelection] = useState('') // 👈 PROBLEM 1
       const onSelect = event => {
-        console.log('💥 a change happened...!') // 👈 PROBLEM 2
+
+        const { value } = event.target
+        setSelection(value)  // 👈 PROBLEM 2
       }
+
       const onReset = () => {
-        console.log('💥 a click happened...!') // 👈 PROBLEM 2
+        setSelection('')  // 👈 PROBLEM 2
       }
       return (
         <section>
@@ -60,7 +63,10 @@
             <option value="go">Golang</option>
           </select>
           <h4 id="info">{
-            'No selection made' // 👈 PROBLEM 3
+            // 👈 PROBLEM 3
+            !selection
+              ? 'No selection made'
+              : `You chose ${languages[selection]}. ${selection === 'js' ? 'WELL DONE! ❤️' : ''}`
           }</h4>
           <button onClick={onReset}>Reset</button>
         </section>

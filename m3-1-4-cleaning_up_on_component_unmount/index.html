@@ -45,29 +45,31 @@
       useEffect(() => {
         console.log('Bulb mounted!')
         return () => {
-          // 👈 tackle PROBLEM 1 here
+          console.log("Bulb about to unmount")
         }
       }, [])
 
       // 👇 Uncomment the following effect to work on PROBLEM 2:
-      // useEffect(() => {
-      //   const listener = () => console.log('The window was clicked while the lights were on!')
-      //   window.addEventListener('click', listener)
-      //   return () => {
-      //     // 👈 tackle PROBLEM 2 here
-      //   }
-      // }, [])
+      useEffect(() => {
+        const listener = () => console.log('The window was clicked while the lights were on!')
+        window.addEventListener('click', listener)
+        return () => {
+          window.removeEventListener('click', listener)
+          // 👈 tackle PROBLEM 2 here
+        }
+      }, [])
 
       // 👇 Uncomment the following effect to work on PROBLEM 3:
-      // useEffect(() => {
-      //   let interval = setInterval(() => {
-      //     console.log('Another second has elapsed with the lights on...')
-      //     setSeconds(sc => sc + 1)
-      //   }, 1000)
-      //   return () => {
-      //     // 👈 tackle PROBLEM 3 here
-      //   }
-      // }, [])
+      useEffect(() => {
+        let interval = setInterval(() => {
+          console.log('Another second has elapsed with the lights on...')
+          setSeconds(sc => sc + 1)
+        }, 1000)
+        return () => {
+          // 👈 tackle PROBLEM 3 here
+          clearInterval(interval)
+        }
+      }, [])
       return (
         <>
           <div className="emoji">💡</div>
